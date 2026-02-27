@@ -1,0 +1,37 @@
+<!doctype html>
+<html lang="en">
+<head>
+  <meta charset="utf-8">
+  <title>AWS Inspector Dashboard</title>
+</head>
+<body>
+  <h1>Inspector Findings by Account</h1>
+  <form action="/upload" method="post" enctype="multipart/form-data">
+    <label>Select CSV file: <input type="file" name="file"></label>
+    <button type="submit">Upload</button>
+  </form>
+
+  {% if accounts %}
+  <table border="1" cellpadding="4" cellspacing="0">
+    <tr>
+      <th>Account ID</th>
+      <th>Account Name</th>
+      <th>Total Findings</th>
+      <th>High %</th>
+      <th>Owner</th>
+      <th>Action</th>
+    </tr>
+    {% for acct in accounts %}
+    <tr>
+      <td>{{ acct.account_id }}</td>
+      <td>{{ acct.account_name }}</td>
+      <td>{{ acct.total_findings }}</td>
+      <td>{{ acct.high_pct }}%</td>
+      <td>{{ acct.owner or 'unknown' }}</td>
+      <td><a href="/send/{{ acct.account_id }}" target="_blank">Send</a></td>
+    </tr>
+    {% endfor %}
+  </table>
+  {% endif %}
+</body>
+</html>
