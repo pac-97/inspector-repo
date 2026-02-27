@@ -1,4 +1,10 @@
-flask
-pandas
-openpyxl
-pywin32
+# Streamlit Cloud / cross-platform
+streamlit==1.41.1
+pandas==3.0.1
+openpyxl==3.1.5
+
+# Optional: keep Flask only if you still run the legacy Flask app locally
+# flask
+
+# Windows-only for Outlook automation when running locally
+pywin32==306 ; platform_system == "Windows"
